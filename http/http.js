@@ -8,6 +8,10 @@ http
       res.write("Hello");
       res.end();
     } else if (url === "/about") {
+      const { method, url, headers } = request;
+      const userAgent = headers["user-agent"];
+      console.log(userAgent);
+
       res.writeHead(201, {
         "Content-Type": "application/json",
         "X-Powered-By": "Ilgsson",
