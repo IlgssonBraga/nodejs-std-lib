@@ -8,6 +8,11 @@ http
       res.write("Hello");
       res.end();
     } else if (url === "/about") {
+      res.writeHead(201, {
+        "Content-Type": "application/json",
+        "X-Powered-By": "Ilgsson",
+      });
+
       res.write(JSON.stringify({ name: "Ilgsson" }));
       res.end();
     }
