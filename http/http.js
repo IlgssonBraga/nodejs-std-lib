@@ -8,8 +8,8 @@ http
       res.write("Hello");
       res.end();
     } else if (url === "/about") {
-      const { method, url, headers } = request;
-      const userAgent = headers["user-agent"];
+      const { method, url, headers } = req;
+      const userAgent = headers["user-agent"]; // Postman
       console.log(userAgent);
 
       res.writeHead(201, {
