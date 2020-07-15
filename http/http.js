@@ -1,24 +1,21 @@
 const http = require("http");
 
-http
-  .createServer((req, res) => {
-    const url = req.url;
+// Instanciar uma classe Server
 
-    if (url === "/") {
-      res.write("Hello");
-      res.end();
-    } else if (url === "/about") {
-      const { method, url, headers } = req;
-      const userAgent = headers["user-agent"]; // Postman
-      console.log(userAgent);
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.write("Hello");
+    res.end();
+  }
+});
 
-      res.writeHead(201, {
-        "Content-Type": "application/json",
-        "X-Powered-By": "Ilgsson",
-      });
+// Como server é uma classe, temos alguns eventos que podem
+// ser ouvidos
 
-      res.write(JSON.stringify({ name: "Ilgsson" }));
-      res.end();
-    }
-  })
-  .listen(3333, () => console.log("Server running on http://localhost:3333"));
+server.addListener("connection", () => {
+  console.log("New connection");
+});
+
+server.listen(3333);
+
+console.log("Server running on PORT 3333");
